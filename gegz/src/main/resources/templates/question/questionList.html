@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>问题列表</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/plugins/layui/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{http://www.jq22.com/jquery/font-awesome.4.6.0.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/index.css}"/>
+    <script type="text/javascript" th:src="@{/plugins/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/plupload.full.min.js}"></script>
+    <style type="text/css">
+        body .layer-class .layui-layer-title {
+            margin: 40px 0;
+            padding: 0;
+            border: none;
+            height: 18px;
+            line-height: 18px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 0;
+        }
+
+        .layui-layer-setwin a {
+            margin-top: 20px;
+        }
+
+        .input-small .layui-edge {
+            right: 10px;
+        }
+
+        .layui-input-block {
+            margin-left: 45px;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .layui-elem-field {
+            margin-bottom: 0;
+        }
+
+        .layui-laypage {
+            margin: 0;
+        }
+
+        .layui-form-select .layui-input {
+            width: 100%
+        }
+
+        .layui-input-inline {
+            margin: 0
+        }
+
+        .layui-form-label {
+            width: auto;
+        }
+
+        td .layui-input-inline .layui-btn, td .layui-input-inline .layui-btn:hover {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            background-color: #00a22d;
+            color: #fff;
+            padding: 0;
+        }
+
+        td .layui-input-inline .layui-btn-primary {
+            background-color: #fff;
+            color: #00a22d;
+            border: 1px solid #00a22d;
+        }
+
+        .layui-form-item .layui-input-inline {
+            margin-right: 0;
+        }
+        .layui-unselect,
+        .layui-form-select,
+        .layui-select-title{
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form id="searchForm" name="searchForm" class="layui-form" th:action="@{../question/getQuestonsPageList}">
+        <input type="hidden" id="page" name="page" th:value="${pageInfo.pageNum}"/>
+        <input type="hidden" th:value="${questionQueryDto.searchTab}" id="cqd"/>
+        <table class="layui-field-box searchTable">
+            <tr>
+                <td >
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态:</label>
+                        <div class="layui-input-inine"  style="width: 50.40%;margin-left: 120px;">
+                            <select name="status">
+                                <option value=" ">全部</option>
+                                <option th:if="${questionQueryDto.status==true}"  th:attr="selected='selected'" value="1">有效</option>
+                                <option th:unless="${questionQueryDto.status==true}"  value="1">有效</option>
+                                <option th:if="${questionQueryDto.status==false}"  th:attr="selected='selected'" value="0">无效</option>
+                                <option th:unless="${questionQueryDto.status==false}"  value="0">无效</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td >
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline input-small" style="width:40%;margin-right: 0">
+                            <select id="searchTab" name="searchTab">
+                                <option value="-1">全部</option>
+                                <option value="0" th:if="${questionQueryDto.searchTab!=null and questionQueryDto.searchTab==0}" th:attr="selected='selected'">题目标题</option>
+                                <option value="0" th:unless="${questionQueryDto.searchTab!=null and questionQueryDto.searchTab==0}">题目标题</option>
+                                <option value="1" th:if="${questionQueryDto.searchTab!=null and questionQueryDto.searchTab==1}" th:attr="selected='selected'">答案内容</option>
+                                <option value="1" th:unless="${questionQueryDto.searchTab!=null and questionQueryDto.searchTab==1}">答案内容</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 60%;">
+                            <input type="text" class="layui-input" name="content" id="content" style="width:100%" th:value="${questionQueryDto.content}"/>
+                        </div>
+                    </div>
+                </td>
+                <td class="rightBlock">
+                    <button class="layui-btn" lay-filter="demo1"  lay-submit="">
+                        搜索
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="layui-field-box" style="margin:0 5%;padding-top:0;border-top: 1px solid #ededed"></div>
+    <fieldset class="layui-elem-field">
+        <div class="layui-field-box layui-form" style="padding-top:0">
+            <table class="layui-table ">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>题目标题</th>
+                    <th>是否有效</th>
+                    <th>答案</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${pageInfo.list}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.title}"></td>
+                    <td th:text="${item.status} == true ? '是' : '否'"></td>
+                    <td>
+                        <div th:each="item2,itemStat : ${item.answerDtos}">
+                            <div th:if="${itemStat.index==0}" th:text = "${item2.content}" style="float:left;"></div>
+                            <div th:unless="${itemStat.index==0}" th:text = "','+ ${item2.content}" style="float:left;"></div>
+                        </div>
+                    </td>
+                    <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${#dates.format(item.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <tr th:if="${pageInfo.list!=null and #lists.size(pageInfo.list)==0}">
+                    <td colspan="5">
+                        <img th:src="@{/images/nodata.png}" style="margin:40px"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="layui-field-box rightBlock" style="padding-top: 0">
+        <div id="paged"></div>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+    $(function(){
+        //var cqd = $("#cqd").val();
+        var cqd = [[${questionQueryDto.searchTab}]];
+        $("#searchTab").val(cqd);
+    });
+
+    /*分页*/
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+                , layer = layui.layer;
+        var pages = [[${pageInfo.navigatePages}]];
+        var currs = [[${pageInfo.pageNum}]];
+        var group = pages;
+        if (pages > 5) {
+            group = 5;
+        }
+        laypage({
+            cont: 'paged'
+            , pages: pages
+            , groups: group
+            , first: 1
+            , last: pages
+            , curr: currs
+            , jump: function (obj, first) {
+                //得到了当前页，用于向服务端请求对应数据
+                var curr = obj.curr;
+                $("#page").val(curr);
+                if (!first) {
+                    $("#searchForm").submit();
+                }
+            }
+        });
+
+    });
+
+    layui.use('form', function () {
+        var form = layui.form();
+        //各种基于事件的操作，下面会有进一步介绍;
+
+        form.on('submit(demo1)', function (data) {
+            $("#page").val(1);
+            $("#searchForm").submit();
+            return false;
+        })
+    });
+</script>
+</html>

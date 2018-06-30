@@ -1,0 +1,222 @@
+/*
+**create by zhh 2017.1.16
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    color: #333;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.border {
+    border: 1px solid #ededed;
+}
+
+.green {
+    color: #00a22d;
+}
+
+.orange {
+    color: #ff5722;
+}
+
+.gray {
+    color: #999;
+}
+
+.lightGray {
+    color: #ccc;
+}
+
+.centerBlock {
+    text-align: center;
+}
+.rightBlock {
+    text-align: right;
+}
+.padBBig {
+    padding-bottom: 60px;
+}
+
+.padB1 {
+    padding-bottom: 40px;
+}
+
+.padB2 {
+    padding-bottom: 30px;
+}
+
+.padB3 {
+    padding-bottom: 20px;
+}
+.padT0{
+    padding-top:0;
+}
+.padT1 {
+    padding-top: 40px;
+}
+
+.containerPad {
+    padding: 40px;
+}
+
+.titlepad {
+    padding: 20px 0 30px 20px;
+}
+
+.marB0 {
+    margin-bottom: 60px;
+}
+
+.marB1 {
+    margin-bottom: 40px;
+}
+
+.marB2 {
+    margin-bottom: 30px;
+}
+
+.marB3 {
+    margin-bottom: 20px;
+}
+
+.marT1 {
+    margin-top: 40px;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+/* 按钮 */
+.layui-btn-container .layui-btn {
+    margin-right: 20px;
+}
+
+.layui-btn {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #00a22d;
+    color: #fff;
+    padding: 0;
+}
+
+.layui-btn-primary {
+    background-color: #fff;
+    color: #00a22d;
+    border: 1px solid #00a22d;
+}
+
+.layui-btn-disabled {
+    background-color: #fff;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.layui-btn-danger {
+    background-color: #fff;
+    color: #ff5722;
+    border: 1px solid #ff5722;
+}
+
+.layui-btn-small {
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.layui-upload-button {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    margin: 60px 0 20px 0;
+    cursor:pointer;
+    font-size: 16px;
+    border: 0;
+    background-color: #00a22d;
+    color: #fff;
+}
+.layui-upload-icon i {
+    display: none;
+}
+
+/* table */
+.layui-table td, .layui-table th {
+    text-align: center;
+}
+
+td .layui-btn, td .layui-btn:hover {
+    width: auto;
+    height: auto;
+    line-height: inherit;
+    font-size: 14px;
+    background-color: #fff;
+    color: #00a22d;
+}
+
+/* form */
+.layui-form-label {
+    text-align: left;
+    width: auto
+}
+
+.layui-elem-field {
+    border: none;
+}
+
+.layui-field-box {
+    padding: 40px 30px;
+}
+
+/* 进度条重置 */
+.layui-progress {
+    background-color: #999;
+}
+
+.layui-progress-bar {
+    background-color: #00a22d;
+    text-align: center;
+}
+
+.layui-progress-text {
+    font-size: 14px;
+    color: #00a22d;
+}
+
+.progressIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 20px;
+    background-color: #00a22d;
+    border-radius: 50%;
+}
+
+/* layer */
+layui-input, .layui-textarea {
+    width: auto;
+}
+
+/* page */
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #00a22d;
+}
