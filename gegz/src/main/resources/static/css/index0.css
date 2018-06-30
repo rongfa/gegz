@@ -1,0 +1,338 @@
+/*
+**create by zhh 2017.1.16
+*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body {
+    /*overflow-y: hidden;*/
+    font-size: 14px;
+    font-family:Microsoft Yahei;
+    color: #333;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.border {
+    border: 1px solid #ededed;
+}
+
+.green {
+    color: #00a22d;
+}
+
+.orange {
+    color: #ff5722;
+}
+
+.gray {
+    color: #999;
+}
+
+.lightGray {
+    color: #ccc;
+}
+
+.centerBlock {
+    text-align: center;
+}
+.rightBlock {
+    text-align: right;
+}
+.leftBlock{
+    text-align: left;
+}
+.padBBig {
+    padding-bottom: 60px;
+}
+
+.padB1 {
+    padding-bottom: 40px;
+}
+
+.padB2 {
+    padding-bottom: 30px;
+}
+
+.padB3 {
+    padding-bottom: 20px;
+}
+.padT0{
+    padding-top:0;
+}
+.padT1 {
+    padding-top: 40px;
+}
+
+.containerPad {
+    padding: 40px;
+}
+
+.titlepad {
+    padding: 20px 0 30px 20px;
+}
+
+.marB0 {
+    margin-bottom: 60px;
+}
+
+.marB1 {
+    margin-bottom: 40px;
+}
+
+.marB2 {
+    margin-bottom: 30px;
+}
+
+.marB3 {
+    margin-bottom: 20px;
+}
+
+.marT1 {
+    margin-top: 40px;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+/* 按钮 */
+.layui-btn-container .layui-btn {
+    margin-right: 20px;
+}
+
+.layui-btn {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #00a22d;
+    color: #fff;
+    padding: 0;
+}
+
+.layui-btn-primary {
+    background-color: #fff;
+    color: #00a22d;
+    border: 1px solid #00a22d;
+}
+
+.layui-btn-disabled {
+    background-color: #fff;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.layui-btn-danger {
+    background-color: #fff;
+    color: #ff5722;
+    border: 1px solid #ff5722;
+}
+
+.layui-btn-small {
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+}
+.layui-btn+.layui-btn {
+    margin-left: 15px;
+}
+.layui-upload-button {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    margin: 60px 0 20px 0;
+    cursor:pointer;
+    font-size: 16px;
+    border: 0;
+    background-color: #00a22d;
+    color: #fff;
+}
+.layui-upload-icon i {
+    display: none;
+}
+
+/* table */
+
+.layui-table{
+    width:100%;
+    margin:0
+}
+.right-content-body tbody {
+    display: block;
+    /*max-height: 400px;*/
+    /*overflow-y: auto;*/
+}
+.layui-table thead, tbody tr {
+    width:100%;
+    table-layout:fixed;
+}
+
+.layui-table thead tr {
+    background-color: #f4f4f4!important;
+}
+.layui-table td, .layui-table th {
+    text-align: center;
+    height: 50px;
+    padding: 0;
+    border: 1px solid #ededed;
+}
+.layui-table th{
+    color:#999;
+}
+.layui-table td{
+    color:#333;
+}
+td .layui-btn-mini, td .layui-btn-mini:hover{
+    width: auto;
+    height: auto;
+    line-height: inherit;
+    font-size: 14px;
+    background-color: #fff;
+    color: #00a22d;
+}
+td .layui-input-inline .layui-btn, td .layui-input-inline .layui-btn:hover {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #00a22d;
+    color: #fff;
+    padding: 0;
+}
+
+td .layui-input-inline .layui-btn-primary {
+    background-color: #fff;
+    color: #00a22d;
+    border: 1px solid #00a22d;
+}
+
+/* form */
+.layui-form-label {
+    text-align: left;
+    width: 80px;
+}
+
+.layui-elem-field {
+    border: none;
+}
+
+
+/* 进度条重置 */
+.layui-progress {
+    background-color: #999;
+}
+
+.layui-progress-bar {
+    background-color: #00a22d;
+    text-align: center;
+}
+
+.layui-progress-text {
+    font-size: 14px;
+    color: #00a22d;
+}
+
+.progressIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 20px;
+    background-color: #00a22d;
+    border-radius: 50%;
+}
+
+/* layer */
+.layui-input, .layui-textarea {
+    width: auto;
+}
+
+/* page */
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #00a22d;
+}
+
+.layui-body {
+    left: 13.54%;
+    /*overflow-y: hidden;*/
+}
+.layui-field-box{
+    width:90%;
+    min-width: 764px;
+    /*max-width: ;*/
+    margin:40px 5%;
+    padding:0;
+}
+.segmenting-line{
+    border-top: 1px solid #ededed;
+    margin-bottom: 0;
+}
+.layui-form-item {
+     margin-bottom: 0;
+}
+
+/* inmput */
+.input-big{
+    width:340px;
+}
+.layui-form-select,.layui-select-title,.layui-input-block,.layui-input-inline{
+    width: 190px;
+}
+.layui-form-select .layui-input,
+.layui-input-inline .layui-input
+{
+    width: 100%
+}
+.layui-form-label {
+    padding: 9px 0;
+}
+.layui-input-block {
+    height: 40px;
+}
+.layui-input, .layui-select, .layui-textarea {
+    height: 40px;
+    line-height: 40px;
+}
+/*.layui-form-select .layui-edge {*/
+    /*border-top-color: #333;*/
+/*}*/
+
+.right-content-body .layui-elem-field {
+    margin-bottom: 0;
+}
+
+.right-content-footer .layui-laypage {
+    margin: 0;
+}
+.layui-form-item .layui-inline {
+    margin-bottom: 0;
+}
+.margin-bottom-0{
+    margin-bottom: 0;
+}
+.layui-icon-delete,
+.layui-icon-add{
+    line-height: 40px;
+    cursor:pointer
+}
+.layui-icon-delete:hover{
+    background-color: #ff5722;
+    color:#fff;
+}
+.layui-icon-add{
+    color:#00a22d;
+}
+

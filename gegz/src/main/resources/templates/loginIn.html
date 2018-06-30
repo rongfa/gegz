@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/plugins/layui/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{http://www.jq22.com/jquery/font-awesome.4.6.0.css}"/>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.form.min.js}"></script>
+    <style type="text/css">
+        .yzm {
+            height: 38px;
+            margin: 0 auto;
+            width: 100%;
+            line-height: 38px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .code {
+            width: 50%;
+            height: 38px;
+            border: 0;
+            border-color: transparent;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 8px;
+        }
+
+        .code_pic {
+            display: block;
+            width: 40%;
+            height: 38px;
+            background-color: #5FB878;
+            color: #FFF;
+            position: absolute;
+            top: 0px;
+            left: 60%;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="beg-login-bg">
+<div class="beg-login-box">
+    <header>
+        <h1>后台登录</h1>
+    </header>
+    <div class="beg-login-main">
+        <form id="form1" action="/checkLogin" class="layui-form" method="post">
+            <input name="__RequestVerificationToken" type="hidden"
+                   value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81"/>
+            <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe612;</i>
+                </label>
+                <input type="text" name="phone" required="required" lay-verify="phone" autocomplete="off"
+                       placeholder="这里输入登录名" class="layui-input" value="13551804620"/>
+            </div>
+            <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe642;</i>
+                </label>
+                <input type="password" name="password" lay-verify="password" required="required" autocomplete="off"
+                       placeholder="这里输入密码" class="layui-input" value="lxl123"/>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-inline, yzm">
+                    <input type="text" name="code" value="1" id="codeInput" class="code" required="required" placeholder="验证码"/>
+                    <span id="code" class="code_pic" title="看不清，换一张" style="cursor: pointer;"></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="beg-pull-left beg-login-remember">
+                    <label>记住帐号？</label>
+                    <input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked="checked"
+                           title="记住帐号"/>
+                </div>
+                <!--BadCredentialsException
+                InternalAuthenticationServiceException-->
+                <div class="beg-pull-right">
+                    <button class="layui-btn layui-btn-primary" id="log" lay-filter="modlePro"  lay-submit="">
+                        <i class="layui-icon">&#xe650;</i> 登录
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    if (window != top){
+        top.location.href = location.href;
+    }
+
+    $(function(){
+        changeImg();
+    });
+    /*<![CDATA[*/
+    function changeImg() {
+        // 验证码组成库
+        var arrays = new Array(
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                'U', 'V', 'W', 'X', 'Y', 'Z'
+        );
+        // 重新初始化验证码
+        code = '';
+        // 随机从数组中获取四个元素组成验证码
+        for (var i = 0; 4 > i; i++) {
+            // 随机获取一个数组的下标
+            var r = parseInt(Math.random() * arrays.length);
+            code += arrays[r];
+        }
+        // 验证码写入span区域
+        document.getElementById('code').innerHTML = code;
+    }
+    /*]]>*/
+
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer,
+            form = layui.form();
+        // 声明一个变量用于存储生成的验证码
+
+        $('#code').bind("click", function () {
+            changeImg();
+            form.render();
+        });
+        //监听提交
+        form.on('submit(modlePro)', function(data){
+            //var f = checkCode();
+            var f = true;
+            if(f==true){
+                $("#form1").ajaxSubmit(function (data) {
+                    layer.msg(data.msg);
+                    if(data.code == 0){
+                        window.setTimeout(function(){
+                            location.href="index";
+                        },1000);
+                    }
+                });
+            }
+            return false;
+        });
+
+    });
+
+    function checkCode(){
+        var cI = $("#codeInput").val();
+        var c = $("#code").html();
+        cI = cI.toUpperCase();
+        c = c.toUpperCase();
+        if(c!=cI){
+            layer.msg("请填写正确的验证码");
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+</body>
+
+</html>
